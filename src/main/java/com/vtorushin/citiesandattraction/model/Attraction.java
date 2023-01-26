@@ -1,5 +1,6 @@
 package com.vtorushin.citiesandattraction.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -11,13 +12,14 @@ import java.util.Date;
 public class Attraction {
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long attractionId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "name", nullable = false)
+    @ManyToOne(targetEntity = City.class, fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "city_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private City city;
+    @JsonIgnore
+    private City cityId;
 
     @Column(unique = true)
     private String attractionName;
@@ -35,13 +37,12 @@ public class Attraction {
     public Attraction() {
     }
 
-    public Attraction(Long attractionId, String attractionName, Date buildingDate, String description, AttractionType attractionType, City city) {
-        this.attractionId = attractionId;
+    public Attraction(City cityId, String attractionName, Date buildingDate, String description, AttractionType attractionType) {
+        this.cityId = cityId;
         this.attractionName = attractionName;
         this.buildingDate = buildingDate;
         this.description = description;
         this.attractionType = attractionType;
-        this.city = city;
     }
 
     public String getAttractionName() {
@@ -60,8 +61,8 @@ public class Attraction {
         this.description = description;
     }
 
-    public Long getAttractionId() {
-        return attractionId;
+    public Long getId() {
+        return id;
     }
 
     public Date getBuildingDate() {
@@ -76,7 +77,7 @@ public class Attraction {
         return attractionType;
     }
 
-    public City getCity() {
-        return city;
+    public City getCityId() {
+        return cityId;
     }
 }

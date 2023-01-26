@@ -9,10 +9,10 @@ import java.util.Objects;
 public class City {
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long cityId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(unique = true)
+    @Column
     private String cityName;
     @Column
     private int population;
@@ -38,8 +38,8 @@ public class City {
         this.countryName = countryName;
     }
 
-    public Long getCityId() {
-        return cityId;
+    public Long getId() {
+        return id;
     }
 
     public String getCityName() {
@@ -69,7 +69,7 @@ public class City {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.cityId);
+        hash = 79 * hash + Objects.hashCode(this.id);
         hash = 79 * hash + Objects.hashCode(this.cityName);
         hash = 79 * hash + this.population;
         return hash;
@@ -93,16 +93,15 @@ public class City {
         if (!Objects.equals(this.cityName, other.cityName)) {
             return false;
         }
-        return Objects.equals(this.cityId, other.cityId);
+        return Objects.equals(this.id, other.id);
     }
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("City{");
-        sb.append("id=").append(cityId);
-        sb.append(", name='").append(cityName).append('\'');
-        sb.append(", population=").append(population);
-        sb.append('}');
-        return sb.toString();
+        return "City{" + "id=" + id +
+                ", name='" + cityName + '\'' +
+                ", population=" + population +
+                ", country=" + countryName +
+                '}';
     }
 }

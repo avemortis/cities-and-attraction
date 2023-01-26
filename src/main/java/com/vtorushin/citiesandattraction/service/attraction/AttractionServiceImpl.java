@@ -1,6 +1,7 @@
 package com.vtorushin.citiesandattraction.service.attraction;
 
 import com.vtorushin.citiesandattraction.model.Attraction;
+import com.vtorushin.citiesandattraction.model.AttractionType;
 import com.vtorushin.citiesandattraction.repository.AttractionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,10 +22,5 @@ public class AttractionServiceImpl implements AttractionService {
     @Override
     public List<Attraction> readAll() {
         return repository.findAll();
-    }
-
-    @Override
-    public List<Attraction> findByCity(Long cityId) {
-        return null;
     }
 }
