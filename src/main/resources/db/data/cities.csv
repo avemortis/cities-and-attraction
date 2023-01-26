@@ -1,0 +1,5 @@
+id,name,population,haveMetro,countryName
+0,Moscow,11980000,true,Russia
+1,Saint Petersburg,5561000,true,Russia
+2,Kazan,1308660,true,Russia
+3,Krasnoyarsk,1067000,false,Russia
